@@ -155,7 +155,8 @@ with tab2:
         st.text("You don't have to tell us what's wrong; we just need to know how much it's affecting your life and how much of an impact it has on your moods.")
         st.text("You can tell us anything about yourself or any personal life at all, and we will not reveal anything about you.We want to help!")
         confession=st.text_area("Confession box",placeholder="You can confess your feeling here (completely anonymous)",height=1)
-        insert(confession)
+        if st.button("submit confession"):
+            insert(confession)
     if st.button("See my old confessions"):
         fetch_confessions(user_id)
 with tab3:
