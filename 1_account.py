@@ -50,12 +50,14 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 local_css("style.css")
-
 st.markdown("""
 
 <style>
 
 
+ .css-1vencpc {
+        display: none;
+    }
  .css-163ttbj {
         display: none;
     }
