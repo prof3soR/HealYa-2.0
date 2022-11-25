@@ -46,6 +46,9 @@ st.markdown("""
 <style>
 
 
+ .css-1vencpc {
+        display: none;
+    }
  .css-163ttbj {
         display: none;
     }
