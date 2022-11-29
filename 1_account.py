@@ -50,14 +50,12 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 local_css("style.css")
+
 st.markdown("""
 
 <style>
 
 
- .css-1vencpc {
-        display: none;
-    }
  .css-163ttbj {
         display: none;
     }
@@ -152,7 +150,7 @@ def add_bg_from_url():
          f"""
          <style>
          .stApp {{
-             background-image: url("https://wallpapercave.com/dwp2x/wp5568037.jpg");
+             background-image: url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
              background-attachment: fixed;
              background-size: cover;
          }}
@@ -161,5 +159,5 @@ def add_bg_from_url():
          unsafe_allow_html=True
      )
 
-#add_bg_from_url() 
+add_bg_from_url() 
 

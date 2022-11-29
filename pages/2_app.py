@@ -41,6 +41,7 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+
 st.markdown("""
 
 <style>
@@ -88,7 +89,10 @@ def fetch_confessions(user_id):
     if len(con)==0:
         st.write("No confession records found!")
     else:
-        st.write(con)
+        from itertools import cycle
+        cols = cycle(st.columns(2)) 
+        for i in con[0]:
+            next(cols).write(i)
 def fetch_solutions(user_id):
     mycursor = mydb.cursor()
     mycursor.execute("select sol from solution where user_id={};".format(user_id))
@@ -153,17 +157,36 @@ with tab1:
         get_score(score)
 
 with tab2:
-    if st.button("New confession"):
+    tab1,tab2=st.tabs(["new confession","show old confessions"])
+    with tab1:
         st.text("We want you to know that we care about you and your well-being, and we want to help you get through whatever is bothering you right now. If there's anything we can do, just let us know.")
         st.text("You don't have to tell us what's wrong; we just need to know how much it's affecting your life and how much of an impact it has on your moods.")
         st.text("You can tell us anything about yourself or any personal life at all, and we will not reveal anything about you.We want to help!")
         confession=st.text_area("Confession box",placeholder="You can confess your feeling here (completely anonymous)",height=1)
-        if st.button("submit confession"):
+        if st.button("submit"):
             insert(confession)
-    if st.button("See my old confessions"):
+    with tab2:
+        from itertools import cycle
         fetch_confessions(user_id)
+        
 with tab3:
     st.header("Solutions")
     fetch_solutions(user_id)
-    
+
+def add_bg_from_url():
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+             background-attachment: fixed;
+             background-size: cover;
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
+
+add_bg_from_url() 
+
         
