@@ -54,7 +54,9 @@ local_css("style.css")
 st.markdown("""
 
 <style>
-
+ .css-k1vhr4{
+    display:none;
+    }
 
  .css-163ttbj {
         display: none;
