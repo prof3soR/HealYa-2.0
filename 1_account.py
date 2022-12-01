@@ -9,7 +9,7 @@ def switch_page(page_name: str):
 
     page_name = standardize_name(page_name)
 
-    pages = get_pages("streamlit_app.py")  # OR whatever your main page is called
+    pages = get_pages("streamlit_app.py")
 
     for page_hash, config in pages.items():
         if standardize_name(config["page_name"]) == page_name:
@@ -54,9 +54,7 @@ local_css("style.css")
 st.markdown("""
 
 <style>
- .css-1yj3lwe{
-    display:none;
-    }
+
 
  .css-163ttbj {
         display: none;
@@ -71,7 +69,7 @@ st.markdown("""
 
 
 
-def login():
+def login(uid):
     mycursor = mydb.cursor()
     mycursor.execute("select password from accounts where user_id={};".format(uid))
     myresult = mycursor.fetchall()
@@ -96,6 +94,7 @@ mycursor = mydb.cursor()
 mycursor.execute("select User_id from accounts;")
 myresult = mycursor.fetchall()
 new_id=myresult[-1][0]+1
+
 col1,col2=st.columns((0.7,2))
 with col1:
     st.write("")
@@ -140,7 +139,7 @@ with tab2:
         uid=st.text_input("User Id",placeholder="Enter Your user id (Ex:1)")
         pas=st.text_input("Password",placeholder="Password")
         if st.button("Log in"):
-            login()
+            login(uid)
     with col3:
         st.write("")
 
@@ -152,7 +151,7 @@ def add_bg_from_url():
          f"""
          <style>
          .stApp {{
-             background-image: url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+             background-image: url("https://images.unsplash.com/photo-1595113316349-9fa4eb24f884?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80");
              background-attachment: fixed;
              background-size: cover;
          }}
